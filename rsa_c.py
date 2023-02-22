@@ -5,6 +5,18 @@ def is_prime(x):
         if x % i == 0:
             return False
     return True
+def key_generation(p, q):
+    n = p * q
+    phi, e, d = (p - 1) * (q - 1), 0, 0
+    for i in range(2, p):
+        if math.gcd(i, phi) == 1:
+            e = i
+            break
+    for i in range(1, phi):
+        if e * i % phi == 1:
+            d = i
+            break
+    return [n, phi, e, d]
 
 def rsa_encrypte(m, e, n):
     return m ** e % n
@@ -18,17 +30,7 @@ while not is_prime(p) and not is_prime(q):
     print('Введите ПРОСТЫЕ числа')
     p, q = int(input('p: ')), int(input('q: '))
 
-n = p * q
-phi, e, d = (p - 1) * (q - 1), 0, 0
-for i in range(2, p):
-    if math.gcd(i, phi) == 1:
-        e = i
-        break
-for i in range(1, phi):
-    if e * i % phi == 1:
-        d = i
-        break
-
+n, phi, e, d = key_generation(p, q)
 m = ord(input('Введите одну букву алфавита: '))
 m1 = rsa_encrypte(m, e, n)
 print(f'Зашифрованное число: {m1}')
