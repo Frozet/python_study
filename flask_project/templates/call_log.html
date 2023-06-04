@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Журнал звонков</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h3>Выберите период, за который хотите просмотреть звонки</h3>
+    <form method="POST" action="/">
+        <label for="start_date">Начальная дата:</label>
+        <input type="date" name="start_date" required><br>
+        <label for="end_date">Конечная дата:</label>
+        <input type="date" name="end_date" required><br>
+        <input type="submit" value="Показать">
+    </form>
+
+    <h1>Журнал звонков</h1>
+    <table border="1">
+        <tr>
+            <th>date_begin</th>
+            <th>call_time</th>
+            <th>date_end</th>
+            <th>numbers</th>
+        </tr>
+        {% for call in call_log %}
+        <tr>
+            <td>{{ call['start_call'] }}</td>
+            <td>{{ call['duration'] }}</td>
+            <td>{{ call['end_call'] }}</td>
+            <td>{{ call['another_number'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

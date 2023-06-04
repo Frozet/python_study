@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Журнал звонков</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Выберите период, за который хотите просмотреть звонки</h1>
+    <form method="POST" action="/">
+        <label for="start_date">Начальная дата:</label>
+        <input type="date" name="start_date" required><br>
+        <label for="end_date">Конечная дата:</label>
+        <input type="date" name="end_date" required><br>
+        <input type="submit" value="Показать">
+    </form>
+</body>
+</html>
